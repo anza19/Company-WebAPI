@@ -83,5 +83,17 @@ namespace WebAPI.Controllers
 
             return new JsonResult($"Updated {department.DepartmentName} in dbo.Department");
         }
+
+        // API to PUT (update an existing record) data into an existing record 
+        [HttpDelete("{id}")]
+        public JsonResult Delete(int id)
+        {
+            string sqlQuery = $"DELETE FROM dbo.Department WHERE DepartmentId={id}";
+
+            DataTable table = SqlClient(sqlQuery);
+
+            return new JsonResult($"Deleted record with id:{id} in dbo.Department");
+        }
+
     }
 }
